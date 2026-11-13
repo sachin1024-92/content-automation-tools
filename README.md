@@ -1,10 +1,10 @@
 # Content Automation Tools 🎥
 
+> **Status: planned.** This repository currently holds the project plan only. No application code has been published here yet, so the features below describe what is intended, not what exists.
+
 **AI-powered toolkit** for YouTube & Instagram content creators.
 
 Automate repetitive tasks like generating titles, descriptions, thumbnails ideas, scripts, and scheduling — all in one Flutter app powered by Grok and other LLMs.
-
-![Content Automation Preview](https://via.placeholder.com/800x450?text=Add+your+app+screenshots+here)
 
 ## Why Content Automation Tools?
 
@@ -17,15 +17,15 @@ Creating consistent content is time-consuming. This toolkit helps faceless creat
 
 Especially useful for motivation, facts, tech, finance, and educational channels.
 
-## Key Features
+## Planned features
 
-- ✅ AI Title & Description Generator (optimized for CTR)
-- ✅ Smart Hashtag & Keyword suggestions
-- ✅ Thumbnail text overlay ideas
-- ✅ Script & hook generator
-- ✅ Batch content planning & calendar
-- ✅ Export to Google Sheets / Notion
-- ✅ Performance analytics & A/B testing ideas
+- [ ] AI Title & Description Generator (optimized for CTR)
+- [ ] Smart Hashtag & Keyword suggestions
+- [ ] Thumbnail text overlay ideas
+- [ ] Script & hook generator
+- [ ] Batch content planning & calendar
+- [ ] Export to Google Sheets / Notion
+- [ ] Performance analytics & A/B testing ideas
 
 ## Tech Stack
 
@@ -34,7 +34,7 @@ Especially useful for motivation, facts, tech, finance, and educational channels
 - **Grok / xAI** + other LLM APIs
 - Clean architecture + Riverpod
 
-## Getting Started
+## Getting Started (once code is published)
 
 ```bash
 git clone https://github.com/sachin1024-92/content-automation-tools.git
@@ -64,9 +64,6 @@ Add your AI API keys in the settings.
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-blue?logo=github&style=for-the-badge)](https://github.com/sponsors/sachin1024-92)
 
-Alternative support:
-- [Buy Me a Coffee](https://www.buymeacoffee.com/)
-- [Ko-fi](https://ko-fi.com/)
 
 ## License
 MIT
