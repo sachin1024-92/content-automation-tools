@@ -1,71 +1,33 @@
-# Content Automation Tools 🎥
+> **Repository rename needed:** GitHub → Settings → General → rename `content-automation-tools` to **`utility-apps`**. These four apps were extracted from `daily-motivation-ai` (PR #7) where they did not belong.
 
-> **Status: planned.** This repository currently holds the project plan only. No application code has been published here yet, so the features below describe what is intended, not what exists.
+> **Play secrets** (Settings → Secrets → Actions): `UPLOAD_KEYSTORE_BASE64`, `UPLOAD_KEYSTORE_PASSWORD`, `UPLOAD_KEY_ALIAS`, `UPLOAD_KEY_PASSWORD`.
 
-**AI-powered toolkit** for YouTube & Instagram content creators.
+# Utility apps
 
-Automate repetitive tasks like generating titles, descriptions, thumbnails ideas, scripts, and scheduling — all in one Flutter app powered by Grok and other LLMs.
+Four small Android apps for everyday life in India, each supported by one AdMob banner.
 
-## Why Content Automation Tools?
+| App | What it does | Package |
+|---|---|---|
+| **Seeti** | Listens for the pressure cooker, counts whistles, rings when the dish is done | `io.github.sachin102492.seeti` |
+| **Bijli Guard** | Predicts the electricity bill from meter readings, warns before 150 units (MP subsidy), tenant sub-meter bills | `io.github.sachin102492.bijli` |
+| **SafeShare ID** | Masks the ID number and QR code on an ID photo and stamps who the copy is for | `io.github.sachin102492.safeshare` |
+| **Ghar Clock** | Learns how long the LPG cylinder lasts; reminders for RO, AC, inverter and other home servicing | `io.github.sachin102492.gharclock` |
 
-Creating consistent content is time-consuming. This toolkit helps faceless creators and busy YouTubers by automating:
-- Title & description generation
-- Hashtag and keyword research
-- Thumbnail text & concept suggestions
-- Script outlining
-- Content calendar planning
+## How it's built
+- Kotlin + Jetpack Compose, minSdk 26, targetSdk 36. One Gradle project; `core/` holds the shared
+  ad/consent code, theme and About screen.
+- Ads: Google Mobile Ads 23.6.0 with the User Messaging Platform for consent. Debug builds always
+  use Google's test ad IDs. Release builds read real IDs from `admob.properties`.
+- Every push that touches `utility-apps/` runs `.github/workflows/utility-apps.yml`: unit tests, lint, debug + release APKs and Play
+  bundles (`.aab`), then installs all four apps on an Android 14 emulator, walks through their
+  screens, saves screenshots, and fails if any app crashes.
 
-Especially useful for motivation, facts, tech, finance, and educational channels.
+## Signing for Google Play
+Release bundles are signed with the upload key from four repository secrets:
+`UPLOAD_KEYSTORE_BASE64`, `UPLOAD_KEYSTORE_PASSWORD`, `UPLOAD_KEY_ALIAS`, `UPLOAD_KEY_PASSWORD`.
+Without them the build still works, but its release files can't be uploaded to Play.
+The keystore itself is never committed.
 
-## Planned features
-
-- [ ] AI Title & Description Generator (optimized for CTR)
-- [ ] Smart Hashtag & Keyword suggestions
-- [ ] Thumbnail text overlay ideas
-- [ ] Script & hook generator
-- [ ] Batch content planning & calendar
-- [ ] Export to Google Sheets / Notion
-- [ ] Performance analytics & A/B testing ideas
-
-## Tech Stack
-
-- **Flutter** (mobile + desktop)
-- **Firebase** backend
-- **Grok / xAI** + other LLM APIs
-- Clean architecture + Riverpod
-
-## Getting Started (once code is published)
-
-```bash
-git clone https://github.com/sachin1024-92/content-automation-tools.git
-cd content-automation-tools
-flutter pub get
-flutter run
-```
-
-Add your AI API keys in the settings.
-
-## Monetization Strategy
-
-- Freemium model (basic generations free)
-- Premium subscription for unlimited usage & advanced features
-- One-time pro unlock
-- Potential agency / white-label version
-- GitHub Sponsors for open-source parts
-
-## Roadmap
-- [ ] Direct integration with YouTube & Instagram APIs
-- [ ] AI thumbnail image generation
-- [ ] Voice script reading
-- [ ] Team collaboration features
-- [ ] Analytics dashboard
-
-## Support This Project ❤️
-
-[![Sponsor](https://img.shields.io/badge/Sponsor-GitHub%20Sponsors-blue?logo=github&style=for-the-badge)](https://github.com/sponsors/sachin1024-92)
-
-
-## License
-MIT
-
-Built publicly with Grok AI. Star ⭐ if you're a content creator!
+## Store listings and privacy
+- `docs/store-listings.md`: title, short and full description for each app.
+- `docs/privacy/`: one privacy policy per app, to link from Play Console.
