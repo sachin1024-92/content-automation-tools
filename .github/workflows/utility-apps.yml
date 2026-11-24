@@ -110,3 +110,27 @@ jobs:
           name: utility-apps-screenshots
           path: shots/
           if-no-files-found: ignore
+
+  # After the build and the emulator check pass on main, refresh a "latest"
+  # pre-release so the newest APKs always sit at one stable link.
+  latest:
+    name: Publish latest APKs
+    needs: [build, emulator]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: utility-apps
+          path: dist
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release delete latest --cleanup-tag --yes || true
+          gh release create latest dist/*.apk \
+            --prerelease --target "$GITHUB_SHA" --title "Utility apps latest build" \
+            --notes "Built automatically from main (run ${{ github.run_number }}) after unit tests, lint and the emulator check passed. The -debug APKs install on any phone for testing. The -release APKs are signed with the upload key only when the keystore secrets are set."
